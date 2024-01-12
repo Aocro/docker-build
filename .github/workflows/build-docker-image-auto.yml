@@ -26,7 +26,7 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           context: ./caddy
-          file: Dockerfile
+          file: ./caddy/Dockerfile
           platforms: linux/arm64,linux/amd64
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/caddy:latest
@@ -42,7 +42,7 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           context: ./caddy-acmedns-cf
-          file: Dockerfile
+          file: ./caddy-acmedns-cf/Dockerfile
           platforms: linux/arm64,linux/amd64
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/caddy-acmedns-cf:latest
@@ -58,7 +58,7 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           context: ./loop
-          file: Dockerfile
+          file: ./loop/Dockerfile
           platforms: linux/arm64,linux/amd64
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/loop:latest
