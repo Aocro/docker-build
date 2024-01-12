@@ -7,11 +7,11 @@ ARG GITHUB_WORKFLOW_ACCESS_TOKEN=""
 
 WORKDIR /app
 
-# Download curl & git
-RUN apk add curl && apk add git jq
+# Download curl git jq
+RUN apk add curl git jq
 
 # Download latest jar
-RUN if [ -n $GITHUB_WORKFLOW_ACCESS_TOKEN ]; then \
+RUN if [ -n "$GITHUB_WORKFLOW_ACCESS_TOKEN" ]; then \
     echo Downloading from latest github artifacts... \
     && curl -H "Authorization: Bearer $GITHUB_WORKFLOW_ACCESS_TOKEN" -LJO $(curl -s -H "Authorization: Bearer $GITHUB_WORKFLOW_ACCESS_TOKEN" \
     "https://api.github.com/repos/Grasscutters/Grasscutter/actions/workflows/build.yml/runs?status=success&per_page=1" \
