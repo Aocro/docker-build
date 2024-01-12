@@ -3,7 +3,7 @@ FROM alpine AS build
 # See https://gitlab.com/YuukiPS/GC-Resources.git branch name
 ARG RESOURCES_VERSION="4.0"
 # If this token is set, it will enable the usage of the Github Action API to fetch the latest artifact versions from the development branch.
-ARG GITHUB_ACCESS_TOKEN=""
+ARG GITHUB_WORKFLOW_ACCESS_TOKEN=""
 
 WORKDIR /app
 
@@ -11,12 +11,12 @@ WORKDIR /app
 RUN apk add curl && apk add git jq
 
 # Download latest jar
-RUN if [ -n $GITHUB_ACCESS_TOKEN ]; then \
+RUN if [ -n $GITHUB_WORKFLOW_ACCESS_TOKEN ]; then \
     echo Downloading from latest github artifacts... \
-    && curl -H "Authorization: Bearer $GITHUB_ACCESS_TOKEN" -LJO $(curl -s -H "Authorization: Bearer $GITHUB_ACCESS_TOKEN" \
+    && curl -H "Authorization: Bearer $GITHUB_WORKFLOW_ACCESS_TOKEN" -LJO $(curl -s -H "Authorization: Bearer $GITHUB_WORKFLOW_ACCESS_TOKEN" \
     "https://api.github.com/repos/Grasscutters/Grasscutter/actions/workflows/build.yml/runs?status=success&per_page=1" \
     | jq -r '.workflow_runs[0].artifacts_url' \
-    | xargs curl -s -H "Authorization: Bearer $GITHUB_ACCESS_TOKEN" \
+    | xargs curl -s -H "Authorization: Bearer $GITHUB_WORKFLOW_ACCESS_TOKEN" \
     | jq -r '.artifacts[0].archive_download_url') \
     && unzip Grasscutter.zip && mv *.jar grasscutter.jar; \
 else \

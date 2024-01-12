@@ -22,4 +22,4 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
           repository: ${{ secrets.DOCKERHUB_USERNAME }}/grasscutter
-          build-args: RESOURCES_VERSION=${{ secrets.GRASSCUTTER_RES_VERSION }},GITHUB_ACCESS_TOKEN=${{ secrets.GITHUB_ACCESS_TOKEN }}
+          build-args: RESOURCES_VERSION=${{ secrets.GRASSCUTTER_RES_VERSION }},GITHUB_WORKFLOW_ACCESS_TOKEN=${{ secrets.GITHUB_WORKFLOW_ACCESS_TOKEN }}
