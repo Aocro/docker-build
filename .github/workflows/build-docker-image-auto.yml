@@ -1,0 +1,70 @@
+name: Build Docker Image - Auto
+
+on:
+  schedule:
+    - cron: '0 0 */7 * *'
+  workflow_dispatch:
+
+jobs:
+  build-caddy-image:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      
+      # caddy
+      - name: Build and push caddy image
+        uses: docker/build-push-action@v5
+        with:
+          context: ./caddy
+          file: Dockerfile
+          platforms: linux/arm64,linux/amd64
+          push: true
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/caddy:latest
+      - name: Update caddy repo description
+        uses: peter-evans/dockerhub-description@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+          repository: ${{ secrets.DOCKERHUB_USERNAME }}/caddy
+      
+      # caddy-acmedns-cf
+      - name: Build and push caddy-acmedns-cf image
+        uses: docker/build-push-action@v5
+        with:
+          context: ./caddy-acmedns-cf
+          file: Dockerfile
+          platforms: linux/arm64,linux/amd64
+          push: true
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/caddy-acmedns-cf:latest
+      - name: Update caddy-acmedns-cf repo description
+        uses: peter-evans/dockerhub-description@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+          repository: ${{ secrets.DOCKERHUB_USERNAME }}/caddy-acmedns-cf
+      
+      # loop
+      - name: Build and push loop image
+        uses: docker/build-push-action@v5
+        with:
+          context: ./loop
+          file: Dockerfile
+          platforms: linux/arm64,linux/amd64
+          push: true
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/loop:latest
+      - name: Update loop repo description
+        uses: peter-evans/dockerhub-description@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+          repository: ${{ secrets.DOCKERHUB_USERNAME }}/loop
