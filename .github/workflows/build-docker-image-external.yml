@@ -9,7 +9,7 @@ jobs:
   build-blessing-skin-image:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
+      - name: Checkout remote code
         uses: actions/checkout@v4
         with:
           repository: bs-community/blessing-skin-server
@@ -30,9 +30,12 @@ jobs:
           platforms: linux/arm64,linux/amd64
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/blessing-skin:latest
+      - name: Checkout code
+        uses: actions/checkout@v4
       - name: Update repo description
         uses: peter-evans/dockerhub-description@v3
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
           repository: ${{ secrets.DOCKERHUB_USERNAME }}/blessing-skin
+          readme-filepath: ./blessing-skin/readme.md

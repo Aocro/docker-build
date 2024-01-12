@@ -36,6 +36,7 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
           repository: ${{ secrets.DOCKERHUB_USERNAME }}/caddy
+          readme-filepath: ./caddy/readme.md
       
       # caddy-acmedns-cf
       - name: Build and push caddy-acmedns-cf image
@@ -52,6 +53,7 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
           repository: ${{ secrets.DOCKERHUB_USERNAME }}/caddy-acmedns-cf
+          readme-filepath: ./caddy-acmedns-cf/readme.md
       
       # loop
       - name: Build and push loop image
@@ -68,3 +70,4 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
           repository: ${{ secrets.DOCKERHUB_USERNAME }}/loop
+          readme-filepath: ./loop/readme.md
