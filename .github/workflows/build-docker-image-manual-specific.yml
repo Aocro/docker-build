@@ -2,6 +2,12 @@ name: Build Docker Image - Manual Specific
 
 on:
   workflow_dispatch:
+    inputs:
+      specific_project:
+        description: 'Enter a specific project name to build.'
+        required: true
+        default: 'loop'
+        # ${{ github.event.inputs.specific_project }}
 
 jobs:
   build-image:
@@ -23,14 +29,14 @@ jobs:
       - name: Build and push specific image
         uses: docker/build-push-action@v5
         with:
-          context: ./${{ secrets.BUILD_SPECIFIC_PROJECT }}
-          file: ./${{ secrets.BUILD_SPECIFIC_PROJECT }}/Dockerfile
+          context: ./${{ github.event.inputs.specific_project }}
+          file: ./${{ github.event.inputs.specific_project }}/Dockerfile
           platforms: linux/arm64,linux/amd64
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.BUILD_SPECIFIC_PROJECT }}:latest
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ github.event.inputs.specific_project }}:latest
       - name: Update specific repo description
         uses: peter-evans/dockerhub-description@v3
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-          repository: ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.BUILD_SPECIFIC_PROJECT }}
+          repository: ${{ secrets.DOCKERHUB_USERNAME }}/${{ github.event.inputs.specific_project }}
