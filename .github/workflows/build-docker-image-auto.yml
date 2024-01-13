@@ -38,22 +38,22 @@ jobs:
           repository: ${{ secrets.DOCKERHUB_USERNAME }}/caddy
           readme-filepath: ./caddy/readme.md
       
-      # caddy-acmedns-cf
-      - name: Build and push caddy-acmedns-cf image
+      # caddy-docker
+      - name: Build and push caddy-docker image
         uses: docker/build-push-action@v5
         with:
-          context: ./caddy-acmedns-cf
-          file: ./caddy-acmedns-cf/Dockerfile
+          context: ./caddy-docker
+          file: ./caddy-docker/Dockerfile
           platforms: linux/arm64,linux/amd64
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/caddy-acmedns-cf:latest
-      - name: Update caddy-acmedns-cf repo description
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/caddy-docker:latest
+      - name: Update caddy-docker repo description
         uses: peter-evans/dockerhub-description@v3
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-          repository: ${{ secrets.DOCKERHUB_USERNAME }}/caddy-acmedns-cf
-          readme-filepath: ./caddy-acmedns-cf/readme.md
+          repository: ${{ secrets.DOCKERHUB_USERNAME }}/caddy-docker
+          readme-filepath: ./caddy-docker/readme.md
       
       # loop
       - name: Build and push loop image
