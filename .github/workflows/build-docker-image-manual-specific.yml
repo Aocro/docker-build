@@ -40,4 +40,4 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
           repository: ${{ secrets.DOCKERHUB_USERNAME }}/${{ github.event.inputs.specific_project }}
-          readme-filepath: ./${{ github.event.inputs.specific_project }}/readme.md
+          readme-filepath: ./${{ github.event.inputs.specific_project }}/README.md
