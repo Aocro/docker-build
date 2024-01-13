@@ -18,7 +18,7 @@ Build docker images every 7 days.
 
 ### [Caddy](./caddy/readme.md)
 
-### [Caddy-ACMEDNS-CF](./caddy-acmedns-cf/readme.md)
+### [Caddy-Docker](./caddy-docker/readme.md)
 
 ### [Grasscutter](./grasscutter/readme.md)
 
