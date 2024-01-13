@@ -1,13 +1,14 @@
-# Caddy-Docker
+# Caddy
+
+> Github: [Aocro/docker-build/caddy](https://github.com/Aocro/docker-build/tree/main/caddy)
 
 ## Usage
 
-- [caddy-docker-proxy](https://github.com/lucaslorentz/caddy-docker-proxy)
+- Refer to the following repos
 
 ## Plugins
 
 - github.com/caddy-dns/acmedns
-- github.com/lucaslorentz/caddy-docker-proxy/v2
 - github.com/hslatman/caddy-crowdsec-bouncer/http
 - github.com/hslatman/caddy-crowdsec-bouncer/layer4
 - github.com/RussellLuo/caddy-ext/layer4

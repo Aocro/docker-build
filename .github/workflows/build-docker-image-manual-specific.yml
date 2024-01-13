@@ -1,18 +1,14 @@
-name: Build Docker Image - External
+name: Build Docker Image - Manual Specific
 
 on:
-  schedule:
-    - cron: '0 0 */7 * *'
   workflow_dispatch:
 
 jobs:
-  build-blessing-skin-image:
+  build-image:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout remote code
+      - name: Checkout code
         uses: actions/checkout@v4
-        with:
-          repository: bs-community/blessing-skin-server
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
       - name: Set up Docker Buildx
@@ -22,20 +18,19 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-      - name: Build and push blessing skin image
+      
+      # specific
+      - name: Build and push specific image
         uses: docker/build-push-action@v5
         with:
-          context: .
-          file: Dockerfile
+          context: ./${{ secrets.BUILD_SPECIFIC_PROJECT }}
+          file: ./${{ secrets.BUILD_SPECIFIC_PROJECT }}/Dockerfile
           platforms: linux/arm64,linux/amd64
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/blessing-skin:latest
-      - name: Checkout code
-        uses: actions/checkout@v4
-      - name: Update repo description
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.BUILD_SPECIFIC_PROJECT }}:latest
+      - name: Update specific repo description
         uses: peter-evans/dockerhub-description@v3
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-          repository: ${{ secrets.DOCKERHUB_USERNAME }}/blessing-skin
-          readme-filepath: ./blessing-skin/README.md
+          repository: ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.BUILD_SPECIFIC_PROJECT }}

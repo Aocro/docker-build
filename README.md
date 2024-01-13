@@ -16,14 +16,14 @@ Build docker images every 7 days.
 
 ---
 
-### [Caddy](./caddy/readme.md)
+### [Caddy](./caddy/README.md)
 
-### [Caddy-Docker](./caddy-docker/readme.md)
+### [Caddy-Docker](./caddy-docker/README.md)
 
-### [Grasscutter](./grasscutter/readme.md)
+### [Grasscutter](./grasscutter/README.md)
 
-### [Loop](./loop/readme.md)
+### [Loop](./loop/README.md)
 
 ---
 
-### [Blessing Skin](./blessing-skin/readme.md)
+### [Blessing Skin](./blessing-skin/README.md)

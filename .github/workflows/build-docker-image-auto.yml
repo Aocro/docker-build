@@ -36,7 +36,7 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
           repository: ${{ secrets.DOCKERHUB_USERNAME }}/caddy
-          readme-filepath: ./caddy/readme.md
+          readme-filepath: ./caddy/README.md
       
       # caddy-docker
       - name: Build and push caddy-docker image
@@ -53,7 +53,7 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
           repository: ${{ secrets.DOCKERHUB_USERNAME }}/caddy-docker
-          readme-filepath: ./caddy-docker/readme.md
+          readme-filepath: ./caddy-docker/README.md
       
       # loop
       - name: Build and push loop image
@@ -70,4 +70,4 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
           repository: ${{ secrets.DOCKERHUB_USERNAME }}/loop
-          readme-filepath: ./loop/readme.md
+          readme-filepath: ./loop/README.md
