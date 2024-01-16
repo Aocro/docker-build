@@ -2,7 +2,7 @@ name: Build Docker Image - External
 
 on:
   schedule:
-    - cron: '0 0 */7 * *'
+    - cron: '0 0 1 * *'
   workflow_dispatch:
 
 jobs:
@@ -13,6 +13,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: bs-community/blessing-skin-server
+          ref: master
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
       - name: Set up Docker Buildx
