@@ -2,8 +2,6 @@
 
 > Github: [Aocro/docker-build/blessing-skin](https://github.com/Aocro/docker-build/tree/main/blessing-skin)
 
-Build blessing skin docker images every 7 days.
-
 - Platforms: arm64, amd64
 
 > Source: <https://github.com/bs-community/blessing-skin-server>
