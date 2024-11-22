@@ -32,7 +32,7 @@ jobs:
             RESOURCES_VERSION=${{ secrets.GRASSCUTTER_RES_VERSION }}
             GITHUB_WORKFLOW_ACCESS_TOKEN=${{ secrets.GH_WORKFLOW_ACCESS_TOKEN }}
       - name: Update grasscutter repo description
-        uses: peter-evans/dockerhub-description@v3
+        uses: peter-evans/dockerhub-description@v4
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
