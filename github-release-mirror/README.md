@@ -15,6 +15,8 @@ Choose whether to mirror only the latest version of the repository or all versio
 0 4 * * * /opt/mirror.sh electron/electron latest
 ```
 
+then put it in `${DATA_PATH}/github-release-mirror`
+
 2. Docker compose
 
 ```yaml
@@ -23,10 +25,14 @@ services:
     image: purposely/github-release-mirror:latest
     volumes:
       - ${GITHUB_RELEASE_MIRROR_PATH}:/mirror
-      - ${DATA_PATH}/github-release-mirror/crontab:/etc/cron.d/mirror-cron
+      - ${DATA_PATH}/github-release-mirror:/etc/cron.d/mirror-jobs:ro
     environment:
       ALL_PROXY: ${PROXY_HTTP_Q}
       TZ: ${TIME_ZONE}
     ports:
       - 80:80
 ```
+
+3. (Optional) Environments
+  - time zone: `TZ=${YOUR_TIME_ZONE}`
+  - proxy: `ALL_PROXY=${YOUR_PROXY}`
