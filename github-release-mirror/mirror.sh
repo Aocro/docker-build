@@ -33,6 +33,7 @@ mirror_latest() {
     if [ $? -ne 0 ]; then
         echo "Error: Failed to fetch release information"
         exit 1
+    fi
 
     TAG_NAME=$(echo ${RELEASE} | jq -r '.tag_name')
     if [ "${TAG_NAME}" == "null" ]; then
