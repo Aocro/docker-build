@@ -9,6 +9,6 @@
 ## Plugins
 
 - github.com/caddy-dns/acmedns
-- github.com/RussellLuo/caddy-ext/layer4
+- github.com/mholt/caddy-l4
 - github.com/caddy-dns/cloudflare
 - github.com/caddyserver/forwardproxy
