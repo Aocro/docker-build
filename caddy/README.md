@@ -11,4 +11,4 @@
 - github.com/caddy-dns/acmedns
 - github.com/mholt/caddy-l4
 - github.com/caddy-dns/cloudflare
-- github.com/caddyserver/forwardproxy
+- github.com/greenpau/caddy-security
